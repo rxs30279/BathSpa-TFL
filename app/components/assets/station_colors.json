@@ -1,0 +1,76 @@
+{
+  "lines": [
+    {
+      "name": "Bakerloo",
+      "color": "#B26300"
+    },
+    {
+      "name": "Central",
+      "color": "#DC241F"
+    },
+    {
+      "name": "Circle",
+      "color": "#FFD329"
+    },
+    {
+      "name": "District",
+      "color": "#007229"
+    },
+    {
+      "name": "Hammersmith & City",
+      "color": "#F3A9BB"
+    },
+    {
+      "name": "Jubilee",
+      "color": "#A0A5A9"
+    },
+    {
+      "name": "Metropolitan",
+      "color": "#9B0056"
+    },
+    {
+      "name": "Northern",
+      "color": "#000000"
+    },
+    {
+      "name": "Piccadilly",
+      "color": "#003688"
+    },
+    {
+      "name": "Victoria",
+      "color": "#0098D4"
+    },
+    {
+      "name": "Waterloo & City",
+      "color": "#95CDBA"
+    },
+    {
+      "name": "DLR",
+      "color": "#00A4A7"
+    },
+    {
+      "name": "London Overground",
+      "color": "#EE7C0E"
+    },
+    {
+      "name": "TfL Rail",
+      "color": "#0019A8"
+    },
+    {
+      "name": "Tramlink",
+      "color": "#84B817"
+    },
+    {
+      "name": "Emirates Air Line",
+      "color": "#FFD400"
+    },
+    {
+      "name": "Crossrail",
+      "color": "#6ECEB2"
+    },
+    {
+      "name": "Elizabeth",
+      "color": "#00A5DB"
+    }
+  ]
+}
