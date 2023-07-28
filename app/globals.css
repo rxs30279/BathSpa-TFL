@@ -8,8 +8,10 @@ body {
   background-color: #ccd7ff;
 }
 
-/* @media screen and (min-width: 400px) {
+/* @media screen and (min-width: 600px) {
+  html,
   body {
     background-color: red;
+    max-width: 50vw;
   }
 } */

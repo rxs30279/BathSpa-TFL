@@ -6,7 +6,9 @@ import undergroundLogo from "./images/Underground_logo.jpeg";
 import undergroundLines from "./assets/station_colors";
 import stationArray from "./assets/ICS Station Codes and addresses.json";
 // Components
-// import CardOne from "./journey_card_one";
+import CardOne from "./journey_card_one";
+import CardTwoHeader from "./journey_card_two_header";
+import RouteCompressed from "./route_compressed";
 
 const FetchData = ({ journeyData }) => {
   // Show a loading message or spinner until the data is available
@@ -35,43 +37,28 @@ const FetchData = ({ journeyData }) => {
 
     // Get the cost of the train
     const cost = (
-      journeyData.journeys[journeyNumber].fare.totalCost / 100
+      journeyData.journeys[journeyNumber].fare?.totalCost / 100
     ).toFixed(2);
     const charge_level =
       journeyData.journeys[journeyNumber].fare?.fares[0].chargeLevel;
 
     // Render the fetched data here
 
-    // First card
-
     return (
-      <div className={styles.container_journey}>
-        <div className={styles.letterbox_journey}>
-          <span>
-            From: &nbsp;<strong>{fromStation}</strong>
-          </span>
-
-          <span>
-            To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <strong> {toStation}</strong>
-          </span>
-        </div>
+      <section className={styles.container_journey}>
+        {/* First card */}
+        <CardOne fromStation={fromStation} toStation={toStation} />
 
         {/* Second card */}
-
         <div className={styles.letterbox_journey_map}>
-          <div className={styles.train_times}>
-            <span>
-              {startTime} - {arrivaltTime}
-            </span>
-            <span>
-              {duration}&nbsp; <small> mins</small>
-            </span>
-          </div>
+          <CardTwoHeader
+            startTime={startTime}
+            arrivaltTime={arrivaltTime}
+            duration={duration}
+            cost={cost}
+            charge_level={charge_level}
+          />
 
-          <span className={styles.cost_of_journey}>
-            £{cost}&nbsp; {charge_level}
-          </span>
           <div>
             {/* Journey */}
             <div className={styles.journey_map}>
@@ -90,23 +77,18 @@ const FetchData = ({ journeyData }) => {
                     </div>
                     <span>{leg.instruction.summary}</span>
                   </div>
-                  <div
-                    style={{
-                      height: "5.5rem",
-                      borderColor: getLineColor(
-                        leg.routeOptions[0].lineIdentifier?.name
-                      ),
-                    }}
-                    className={styles.journey_map_line}
-                  >
-                    <div>
-                      &nbsp;&nbsp;{leg.duration}
-                      &nbsp;mins
-                    </div>
-                    <span>view stops</span>
-                  </div>
+
+                  <RouteCompressed
+                    leg={leg}
+                    legIndex={legIndex}
+                    lineColor={getLineColor(
+                      leg.routeOptions[0].lineIdentifier?.name
+                    )}
+                    duration={leg.duration}
+                  />
                 </div>
               ))}
+
               {/* Last stopPoints */}
               <div className={styles.last_stop}>
                 <div className={styles.undergrnd_logo}>
@@ -124,7 +106,7 @@ const FetchData = ({ journeyData }) => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     );
   }
 };

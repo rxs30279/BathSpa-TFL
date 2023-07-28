@@ -61,7 +61,6 @@
   width: 85%;
   height: 23.25rem;
   margin-top: 2.5rem;
-  background-color: rgba(153, 185, 234, 0.42);
 }
 
 .input_form {
@@ -143,9 +142,10 @@
   margin-top: 1rem;
 }
 
-/* @media screen and (min-width: 400px) {
+/* @media screen and (min-width: 600px) {
   .container {
     background-color: red;
+    max-width: 700px;
   }
 } */
 
@@ -241,6 +241,7 @@
   position: relative;
   object-fit: cover;
   object-position: center;
+  margin: 4px 0 4px 0;
 }
 .journey_map_line {
   display: flex;
@@ -254,6 +255,7 @@
   width: 50%;
   margin-bottom: 4px;
 }
+
 .journey_map_line div {
   color: #000;
   font-size: 0.625rem;
@@ -269,6 +271,39 @@
   font-weight: 300;
   line-height: normal;
   text-decoration-line: underline;
+  cursor: pointer;
+}
+.station_list {
+  border-left: 6px solid green;
+  margin-left: 6px;
+  width: 100%;
+  /* margin-bottom: 4px; */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  color: #6f7072;
+}
+.close_staion_list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.close_staion_list span:first-child {
+  color: #000;
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.close_staion_list span:nth-child(2) {
+  color: #1d57eb;
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  text-decoration-line: underline;
+  cursor: pointer;
 }
 
 .last_stop {
