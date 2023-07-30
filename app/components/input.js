@@ -3,7 +3,7 @@ import greggs_logo from "./images/greggs-logo.jpg";
 import Image from "next/image";
 import styles from "../page.module.css";
 import { useState } from "react";
-import FetchData from "./journey";
+import FetchData from "./journey_main";
 import stnData from "./assets/ICS Station Codes and addresses.json";
 
 export default function Input() {

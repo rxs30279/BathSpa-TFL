@@ -229,6 +229,17 @@
   line-height: normal;
   padding: 0.2rem 1rem;
 }
+.hide_journey_map {
+  margin-left: 1rem;
+  margin-top: 0.2rem;
+  color: #1d57eb;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  text-decoration-line: underline;
+  cursor: pointer;
+}
 
 /* Start of map here */
 .journey_map {
