@@ -7,14 +7,14 @@ const CardTwoHeader = (props) => {
     <div>
       <div className={styles.train_times}>
         <span>
-          {props.startTime} - {props.arrivaltTime}
+          {startTime} - {arrivaltTime}
         </span>
         <span>
-          {props.duration}&nbsp; <small> mins</small>
+          {duration}&nbsp; <small> mins</small>
         </span>
       </div>
       <span className={styles.cost_of_journey}>
-        £{props.cost}&nbsp; {props.charge_level}
+        £{cost}&nbsp; {charge_level}
       </span>
     </div>
   );

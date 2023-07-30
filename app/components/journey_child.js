@@ -6,40 +6,50 @@ import RouteCompressed from "./route_compressed";
 // Images
 import Image from "next/image";
 import undergroundLogo from "./images/Underground_logo.jpeg";
+import bus from "./images/bus.svg";
+import walk from "./images/walking.png";
+
 // Data files
 import undergroundLines from "./assets/station_colors";
 import stationArray from "./assets/ICS Station Codes and addresses.json";
 
 const JourneyChild = (props) => {
   const { journey, journeyIndex, targetFrom, targetTo } = props;
+  const [count, setCount] = useState(0);
 
+  console.log("count", count);
   const [expandJourney, setExpandJourney] = useState("");
-  console.log("journeyIndex", journeyIndex, "expandJourney", expandJourney);
   const handleOnClick = (journeyIndex) => {
     journeyIndex === expandJourney
       ? setExpandJourney(null)
       : setExpandJourney(journeyIndex);
-    console.log("journeyIndex", journeyIndex, "expandJourney", expandJourney);
+    setCount((count) => count + 1);
   };
 
   //Render
 
-  return (expandJourney === journeyIndex) | (journeyIndex === 0) ? (
+  return (expandJourney === journeyIndex) |
+    (journeyIndex === 0 && count === 0) ? (
     <section className={styles.container_journey}>
       {/* Second card */}
+
       <div className={styles.letterbox_journey_map}>
-        <CardTwoHeader
-          startTime={timeFormat(new Date(journey.startDateTime))}
-          arrivaltTime={timeFormat(new Date(journey.arrivalDateTime))}
-          duration={journey.duration}
-          cost={(journey.fare?.totalCost / 100).toFixed(2)}
-          charge_level={journey.fare?.fares[0].chargeLevel}
-        />
-        <div
-          className={styles.hide_journey_map}
-          onClick={() => handleOnClick(journeyIndex)}
-        >
-          {journeyIndex != 0 ? "Hide Journey" : ""}
+        <div onClick={() => handleOnClick(journeyIndex)}>
+          <div className={styles.train_times}>
+            <span>
+              {timeFormat(new Date(journey.startDateTime))} -{" "}
+              {timeFormat(new Date(journey.arrivalDateTime))}
+            </span>
+            <span>
+              {journey.duration}&nbsp; <small> mins</small>
+            </span>
+          </div>
+          <div>
+            <span className={styles.cost_of_journey}>
+              £{(journey.fare?.totalCost / 100).toFixed(2)}&nbsp;{" "}
+              {journey.fare?.fares[0].chargeLevel}
+            </span>
+          </div>
         </div>
 
         <div>
@@ -48,16 +58,41 @@ const JourneyChild = (props) => {
             {journey.legs.map((leg, legIndex) => (
               <div key={legIndex}>
                 <div className={styles.journey_map_instruction}>
-                  <div className={styles.undergrnd_logo}>
-                    <Image
-                      priority
-                      fill
-                      sizes="0"
-                      src={undergroundLogo}
-                      style={{ objectFit: "cover" }}
-                      alt="Undergound logo"
-                    />
-                  </div>
+                  {/* Is this walking or a bus */}
+                  {leg.instruction.summary.toLowerCase().includes("bus") ? (
+                    <div className={styles.undergrnd_logo}>
+                      <Image
+                        priority
+                        fill
+                        sizes="0"
+                        src={bus}
+                        style={{ objectFit: "cover" }}
+                        alt="London bus"
+                      />
+                    </div>
+                  ) : leg.instruction.summary.toLowerCase().includes("walk") ? (
+                    <div className={styles.undergrnd_logo_walk}>
+                      <Image
+                        priority
+                        fill
+                        sizes="0"
+                        src={walk}
+                        style={{ objectFit: "cover" }}
+                        alt="Undergound logo"
+                      />
+                    </div>
+                  ) : (
+                    <div className={styles.undergrnd_logo}>
+                      <Image
+                        priority
+                        fill
+                        sizes="0"
+                        src={undergroundLogo}
+                        style={{ objectFit: "cover" }}
+                        alt="Undergound logo"
+                      />
+                    </div>
+                  )}
                   <span>{leg.instruction.summary}</span>
                 </div>
 

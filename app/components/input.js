@@ -7,6 +7,7 @@ import FetchData from "./journey_main";
 import stnData from "./assets/ICS Station Codes and addresses.json";
 
 export default function Input() {
+  // Collects station information from the input box and on form submission
   const [station, setState] = useState({
     stationFrom: "",
     stationFromId: "",
@@ -15,37 +16,30 @@ export default function Input() {
     // stationVia: "",
   });
 
-  const [submitted, setSubmitted] = useState(false); // To track if the form is submitted
-  const [journeyData, setJourneyData] = useState(null);
-  const [filteredOptionsFrom, setFilteredOptionsFrom] = useState([]);
-  const [filteredOptionsTo, setFilteredOptionsTo] = useState([]);
+  const [submitted, setSubmitted] = useState(false); // To control the ternary logic for the page render
+  const [journeyData, setJourneyData] = useState(null); // used to pass the API call to the child component
+  const [filteredOptionsFrom, setFilteredOptionsFrom] = useState([]); // Contains the dropdown contents, matched From stations
+  const [filteredOptionsTo, setFilteredOptionsTo] = useState([]); // Contains the dropdown contents, matched To stations
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Look up the statio ID
     // Get the data from the API call
-
-    const data = await fetchData(
-      station.stationFromId,
-      station.stationToId
-      // station.stationVia
-    );
+    const data = await fetchData(station.stationFromId, station.stationToId);
 
     console.log("journeyData", data);
     setJourneyData(data);
     setSubmitted(true); // Set submitted to true after form submission
   };
 
+  // FROM inputs
   const updateFieldFrom = (e) => {
     const getText = e.target.value.toLowerCase();
+    // if the text array has content then match it and restrict teh match to 6 items, else update the match array to empty.
     if (getText.trim().length > 0) {
       const matchedText = stnData.filter(function (text) {
         return text.Station.toLowerCase().includes(getText);
       });
-
-      // console.log("getText", getText);
-      // console.log("matchedText", matchedText);
-
       setFilteredOptionsFrom(matchedText.slice(0, 6));
     } else {
       setFilteredOptionsFrom([]);
@@ -56,6 +50,7 @@ export default function Input() {
     });
   };
 
+  //TO inputs
   const updateFieldTo = (e) => {
     const getText = e.target.value.toLowerCase();
     if (getText.trim().length > 0) {
@@ -67,14 +62,14 @@ export default function Input() {
     } else {
       setFilteredOptionsTo([]);
     }
-
     setState({
       ...station,
       [e.target.name]: e.target.value,
     });
   };
+
   // handle onclick event from dropdown To and From
-  const handleItemClickFrom = (item, id) => {
+  const handleClickFromDropdown = (item, id) => {
     setState({
       ...station,
       stationFrom: item,
@@ -83,7 +78,7 @@ export default function Input() {
     setFilteredOptionsFrom([]);
   };
 
-  const handleItemClickTo = (item, id) => {
+  const handleClickToDropdown = (item, id) => {
     setState({
       ...station,
       stationTo: item,
@@ -120,7 +115,7 @@ export default function Input() {
                   <li
                     key={station.id}
                     onClick={() =>
-                      handleItemClickFrom(station.Station, station.id)
+                      handleClickFromDropdown(station.Station, station.id)
                     }
                   >
                     {station.Station}
@@ -147,7 +142,7 @@ export default function Input() {
                 {filteredOptionsTo.map((station) => (
                   <li
                     onClick={() =>
-                      handleItemClickTo(station.Station, station.id)
+                      handleClickToDropdown(station.Station, station.id)
                     }
                     key={station.id}
                   >

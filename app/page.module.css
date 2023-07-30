@@ -229,17 +229,6 @@
   line-height: normal;
   padding: 0.2rem 1rem;
 }
-.hide_journey_map {
-  margin-left: 1rem;
-  margin-top: 0.2rem;
-  color: #1d57eb;
-  font-size: 0.9rem;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  text-decoration-line: underline;
-  cursor: pointer;
-}
 
 /* Start of map here */
 .journey_map {
@@ -250,9 +239,6 @@
   display: flex;
   gap: 0.8rem;
 }
-.journey_map_instruction span {
-  margin-top: -2px;
-}
 
 .undergrnd_logo {
   height: 15px;
@@ -262,6 +248,15 @@
   object-position: center;
   margin: 4px 0 4px 0;
 }
+.undergrnd_logo_walk {
+  height: 24px;
+  width: 18px;
+  position: relative;
+  object-fit: cover;
+  object-position: center;
+  margin: 4px 0 4px 0;
+}
+
 .journey_map_line {
   display: flex;
   flex-direction: row;

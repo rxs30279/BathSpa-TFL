@@ -6,12 +6,12 @@ const CardOne = (props) => {
   return (
     <div className={styles.letterbox_journey}>
       <span>
-        From: &nbsp;<strong>{props.fromStation}</strong>
+        From: &nbsp;<strong>{fromStation}</strong>
       </span>
 
       <span>
         To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <strong> {props.toStation}</strong>
+        <strong> {toStation}</strong>
       </span>
     </div>
   );
