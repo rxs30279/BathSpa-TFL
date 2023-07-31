@@ -256,6 +256,14 @@
   object-position: center;
   margin: 4px 0 4px 0;
 }
+.undergrnd_logo_bus {
+  height: 15px;
+  width: 30px;
+  position: relative;
+  object-fit: cover;
+  object-position: center;
+  margin: 4px 0 4px 0;
+}
 
 .journey_map_line {
   display: flex;

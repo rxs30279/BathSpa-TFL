@@ -23,11 +23,12 @@ export default function Input() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     // Look up the statio ID
     // Get the data from the API call
     const data = await fetchData(station.stationFromId, station.stationToId);
-
     console.log("journeyData", data);
+
     setJourneyData(data);
     setSubmitted(true); // Set submitted to true after form submission
   };
@@ -75,6 +76,7 @@ export default function Input() {
       stationFrom: item,
       stationFromId: id,
     });
+    // clears the dropdown menu
     setFilteredOptionsFrom([]);
   };
 

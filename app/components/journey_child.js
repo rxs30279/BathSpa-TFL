@@ -60,7 +60,7 @@ const JourneyChild = (props) => {
                 <div className={styles.journey_map_instruction}>
                   {/* Is this walking or a bus */}
                   {leg.instruction.summary.toLowerCase().includes("bus") ? (
-                    <div className={styles.undergrnd_logo}>
+                    <div className={styles.undergrnd_logo_bus}>
                       <Image
                         priority
                         fill
@@ -78,7 +78,7 @@ const JourneyChild = (props) => {
                         sizes="0"
                         src={walk}
                         style={{ objectFit: "cover" }}
-                        alt="Undergound logo"
+                        alt="Stick man"
                       />
                     </div>
                   ) : (
@@ -144,7 +144,7 @@ const JourneyChild = (props) => {
   );
 };
 
-// Function to extract Station Names form the station object file
+// Function to extract Station Names from the station object file
 function findStation(value) {
   const foundObject = stationArray.find((item) => item.id === value);
   return foundObject ? foundObject.Station : null;
